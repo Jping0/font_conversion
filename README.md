@@ -6,8 +6,11 @@
 <script type="text/javascript" src="./js/language.js"></script>
 ```
 
+
+
+### 使用情况一：只有一个按钮
+
 ```
-使用情况一：只有一个按钮
 new fontConversion({
     btnNum:1,//按钮数量
     elIsId: false,//绑定的按钮是否为id类型，两种类型id--true，class--false
@@ -17,8 +20,9 @@ new fontConversion({
 });
 ```
 
+### 使用情况二：两个按钮
+
 ```
-使用情况二：两个按钮
 new fontConversion({
     btnNum:2,//按钮数量
     elIsId: false,//绑定的按钮是否为id类型，两种类型id--true，class--false
@@ -29,6 +33,10 @@ new fontConversion({
 });
 ```
 
+**注意：绑定的元素不需要加#或者.**
+
+
+
 ### 页面自动转换
 
 ```
@@ -36,13 +44,11 @@ new fontConversion({
     autoChange:{
 		isAuo:true,
 		autoType: 'jian_fan',//jian_fan-简体转换繁体，fan_jian-繁体转换简体
-	},//是否自动转换
+	},
 });
 ```
 
 
-
-**注意：绑定的元素不需要加#或者.**
 
 ### 获取当前字体的状态
 
