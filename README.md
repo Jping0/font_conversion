@@ -29,6 +29,19 @@ new fontConversion({
 });
 ```
 
+### 页面自动转换
+
+```
+new fontConversion({
+    autoChange:{
+		isAuo:true,
+		autoType: 'jian_fan',//jian_fan-简体转换繁体，fan_jian-繁体转换简体
+	},//是否自动转换
+});
+```
+
+
+
 **注意：绑定的元素不需要加#或者.**
 
 ### 获取当前字体的状态

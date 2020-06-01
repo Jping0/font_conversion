@@ -5,61 +5,73 @@
 	var BodyIsFt=getCookie(JF_cn);
 	if(BodyIsFt!="1"){BodyIsFt=Default_isFT}
 	function fontConversion(configData){
-		if(BodyIsFt=="1"){setTimeout(function(){StranBody()},StranIt_Delay)}
-		if(configData.btnNum==1){
-			var transBtn;
-			if(configData.elIsId){
-				transBtn = document.getElementById(configData.bindEl.transBtn);
-			}else{
-				transBtn = document.querySelectorAll('.'+configData.bindEl.transBtn);
-			}
-			transBtn.onclick = function(){
-				if(BodyIsFt==0){
-					transBtn.innerHTML = '繁体';
-					BodyIsFt=1;
-					StranBody();
+		if(!configData.autoChange){
+			if(BodyIsFt=="1"){setTimeout(function(){StranBody()},StranIt_Delay)}
+			if(configData.btnNum==1){
+				var transBtn;
+				if(configData.elIsId){
+					transBtn = document.getElementById(configData.bindEl.transBtn);
 				}else{
-					transBtn.innerHTML = '简体'
-					BodyIsFt=0;
-					StranBody();
+					transBtn = document.querySelectorAll('.'+configData.bindEl.transBtn);
 				}
-			}
-		}else if(configData.btnNum==2){
-			var toFanBtn,toJianBtn;
-			if(configData.elIsId){
-				toFanBtn = document.getElementById(configData.bindEl.toFanBtn);
-				toJianBtn = document.getElementById(configData.bindEl.toJianBtn);
-				toFanBtn.onclick = function(){
+				transBtn.onclick = function(){
 					if(BodyIsFt==0){
+						transBtn.innerHTML = '繁体';
 						BodyIsFt=1;
 						StranBody();
-					}
-				}
-				toJianBtn.onclick = function(){
-					if(BodyIsFt==1){
+					}else{
+						transBtn.innerHTML = '简体'
 						BodyIsFt=0;
 						StranBody();
 					}
 				}
-			}else{
-				toFanBtn = document.querySelectorAll('.'+configData.bindEl.toFanBtn);
-				toJianBtn = document.querySelectorAll('.'+configData.bindEl.toJianBtn);
-				toFanBtn.forEach(function(v,i){
-					v.onclick = function(){
+			}else if(configData.btnNum==2){
+				var toFanBtn,toJianBtn;
+				if(configData.elIsId){
+					toFanBtn = document.getElementById(configData.bindEl.toFanBtn);//转换繁体按钮--id
+					toJianBtn = document.getElementById(configData.bindEl.toJianBtn);//转换简体按钮--id
+					toFanBtn.onclick = function(){
 						if(BodyIsFt==0){
 							BodyIsFt=1;
 							StranBody();
 						}
 					}
-				})
-				toJianBtn.forEach(function(v,i){
-					v.onclick = function(){
+					toJianBtn.onclick = function(){
 						if(BodyIsFt==1){
 							BodyIsFt=0;
 							StranBody();
 						}
 					}
-				})
+				}else{
+					toFanBtn = document.querySelectorAll('.'+configData.bindEl.toFanBtn);//转换繁体按钮--class
+					toJianBtn = document.querySelectorAll('.'+configData.bindEl.toJianBtn);//转换简体按钮--class
+					// 转换成繁体
+					toFanBtn.forEach(function(v,i){
+						v.onclick = function(){
+							if(BodyIsFt==0){
+								BodyIsFt=1;
+								StranBody();
+							}
+						}
+					})
+					// 转换成简体
+					toJianBtn.forEach(function(v,i){
+						v.onclick = function(){
+							if(BodyIsFt==1){
+								BodyIsFt=0;
+								StranBody();
+							}
+						}
+					})
+				}
+			}
+		}else{
+			if(configData.autoChange.autoType=='jian_fan'){
+				BodyIsFt=1;
+				StranBody();
+			}else if(configData.autoChange.autoType=='fan_jian'){
+				BodyIsFt=0;
+				StranBody();
 			}
 		}
 	}
