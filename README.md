@@ -16,6 +16,10 @@ new fontConversion({
     elIsId: false,//绑定的按钮是否为id类型，两种类型id--true，class--false
     bindEl:{
         transBtn:'changeBtn',
+    },
+    useText:false,//是否使用按钮文字-简体/繁体，默认不使用false
+    callBack:function(){
+    //回调函数
     }
 });
 ```
@@ -29,6 +33,10 @@ new fontConversion({
     bindEl:{
         toFanBtn:'fanti',//转换成繁体
         toJianBtn:'jianti',//转换成简体
+    },
+    useText:false,//是否使用按钮文字-简体/繁体，默认不使用false
+    callBack:function(){
+    //回调函数
     }
 });
 ```
@@ -42,7 +50,6 @@ new fontConversion({
 ```
 new fontConversion({
     autoChange:{
-		isAuo:true,
 		autoType: 'jian_fan',//jian_fan-简体转换繁体，fan_jian-繁体转换简体
 	},
 });

@@ -7,6 +7,7 @@
 	function fontConversion(configData){
 		if(!configData.autoChange){
 			if(BodyIsFt=="1"){setTimeout(function(){StranBody()},StranIt_Delay)}
+			configData.btnNum?'':configData.btnNum=1;
 			if(configData.btnNum==1){
 				var transBtn;
 				if(configData.elIsId){
@@ -16,14 +17,19 @@
 				}
 				transBtn.onclick = function(){
 					if(BodyIsFt==0){
-						transBtn.innerHTML = '繁体';
+						if(configData.useText){
+							transBtn.innerHTML = '简体';
+						}
 						BodyIsFt=1;
 						StranBody();
 					}else{
-						transBtn.innerHTML = '简体'
+						if(configData.useText){
+							transBtn.innerHTML = '繁体';
+						}
 						BodyIsFt=0;
 						StranBody();
 					}
+					callBackFn();
 				}
 			}else if(configData.btnNum==2){
 				var toFanBtn,toJianBtn;
@@ -35,12 +41,14 @@
 							BodyIsFt=1;
 							StranBody();
 						}
+						callBackFn();
 					}
 					toJianBtn.onclick = function(){
 						if(BodyIsFt==1){
 							BodyIsFt=0;
 							StranBody();
 						}
+						callBackFn();
 					}
 				}else{
 					toFanBtn = document.querySelectorAll('.'+configData.bindEl.toFanBtn);//转换繁体按钮--class
@@ -52,6 +60,7 @@
 								BodyIsFt=1;
 								StranBody();
 							}
+							callBackFn();
 						}
 					})
 					// 转换成简体
@@ -61,6 +70,7 @@
 								BodyIsFt=0;
 								StranBody();
 							}
+							callBackFn();
 						}
 					})
 				}
@@ -72,6 +82,12 @@
 			}else if(configData.autoChange.autoType=='fan_jian'){
 				BodyIsFt=0;
 				StranBody();
+			}
+			callBackFn();
+		}
+		function callBackFn(){
+			if(typeof configData.callBack == 'function'){
+				configData.callBack();
 			}
 		}
 	}
